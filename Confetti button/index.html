@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Confetti Button Example</title>
+  </head>
+  <body>
+    <div class="button-wrapper">
+      <button class="confetti-button">Yay</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+      document
+        .getElementsByClassName("confetti-button")[0]
+        .addEventListener("click", () => {
+          let canvas = document.createElement("canvas");
+          canvas.width = 600;
+          canvas.height = 600;
+          let container = document.getElementsByClassName("button-wrapper")[0];
+          container.appendChild(canvas);
+
+          let confetti_button = confetti.create(canvas);
+          confetti_button({
+            particleCount: 200,
+            spread: 200,
+            startVelocity: 15,
+            scalar: 0.9,
+            ticks: 90,
+          }).then(() => container.removeChild(canvas));
+        });
+    </script>
+  </body>
+</html>
